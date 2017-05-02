@@ -1,21 +1,31 @@
 package io.hiar;
 
-import io.hiar.signature.Signature;
-import java.util.Date;
+import io.hiar.config.CloudConfig;
+import io.hiar.recognize.Recognize;
+import io.hiar.recognize.RecognizeResult;
+
+import java.io.IOException;
 
 /**
- * Hello world!
  *
  */
 public class App 
 {
     public static void main( String[] args )
     {
-        String appKey = "test";
-        String secret = "adf3aaflletgeadf";
-        String timestamp = "1474601092811";
-        String nonce = "dfafsaf";
-        String signature = Signature.getSignature(appKey, secret, timestamp, nonce);
-        System.out.println(signature);
+        //set your appkey and secret
+        CloudConfig.appkey = "";
+        CloudConfig.secret = "";
+
+        Recognize reco = new Recognize();
+        try
+        {
+            RecognizeResult recoResult = reco.recognize("testData/100.jpg", "", 1);
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
     }
 }
